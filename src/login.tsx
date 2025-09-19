@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
 
 export default function Login() {
+  useEffect(() => {
+    document.body.classList.add("login-body");
+    return () => {
+      document.body.classList.remove("login-body");
+    };
+  }, []);
   const [showPassword, setShowPassword] = useState(false);
+  const navigation = useNavigate();
+  const handleSignIn = () => {
+    navigation("/home");
+  };
   return (
-    <div className="flex justify-center items-center bg-[#FFFFFF] rounded-2xl">
-      <div className="space-y-3 shadow-md p-8 w-full max-w rounded-md">
+    <div className="login.body flex justify-center shadow-2xl rounded-2xl border border-gray-200">
+      <div className="space-y-3 p-8 w-full justify-center">
         <div className="space-y-2">
           <div className="space-y-2">
             <div>
@@ -46,15 +58,15 @@ export default function Login() {
             <input
               type="text"
               placeholder="Enter your username"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
           </div>
           <div className="flex flex-col items-start space-y-3 relative">
             <label className="font-semibold text-[14px]">Password</label>
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Enter your password"
-              className="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Enter password"
+              className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
             <div
               className="absolute top-[50%] right-[10px] transform -translate-y-[50%] bottom-[50%]"
@@ -131,7 +143,10 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <button className="w-[350px] h-[40px] rounded-full flex items-center justify-center bg-[#FF7900]">
+        <button
+          onClick={handleSignIn}
+          className="w-[350px] h-[40px] rounded-full flex items-center justify-center bg-[#FF7900]"
+        >
           <div className="bg-[#FF7900] w-[350px] ">
             <span className="text-white text-sm font-semibold">Sign In</span>
           </div>
