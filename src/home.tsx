@@ -1,11 +1,18 @@
+import { useState } from "react";
+
 export default function Home() {
+  const [searchBar, setSearchBar] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Search:", searchBar);
+  };
   return (
     <div>
-      <div className="w-screen h-[326px] items-start">
+      <div className="w-screen relative h-[326px] items-start">
         <img
           src="src/assets/furniture.png"
           alt=""
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover brightness-65"
         />
         <div className="absolute top-[20px] left-3 w-full h-[60px] flex items-center justify-between px-7">
           <svg
@@ -33,9 +40,106 @@ export default function Home() {
               </clipPath>
             </defs>
           </svg>
-          <div className=" flex rounded px-4 py-2">
-            <p className="text-white">user 1</p>
+          <div className="flex items-center rounded  gap-2 px-4 ">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="items-start"
+            >
+              <path
+                d="M13.3538 6.35378L8.35375 11.3538C8.30732 11.4003 8.25217 11.4372 8.19147 11.4623C8.13077 11.4875 8.06571 11.5004 8 11.5004C7.9343 11.5004 7.86923 11.4875 7.80853 11.4623C7.74783 11.4372 7.69269 11.4003 7.64625 11.3538L2.64625 6.35378C2.55243 6.25996 2.49973 6.13272 2.49973 6.00003C2.49973 5.86735 2.55243 5.7401 2.64625 5.64628C2.74007 5.55246 2.86732 5.49976 3 5.49976C3.13269 5.49976 3.25993 5.55246 3.35375 5.64628L8 10.2932L12.6463 5.64628C12.6927 5.59983 12.7479 5.56298 12.8086 5.53784C12.8693 5.5127 12.9343 5.49976 13 5.49976C13.0657 5.49976 13.1308 5.5127 13.1915 5.53784C13.2521 5.56298 13.3073 5.59983 13.3538 5.64628C13.4002 5.69274 13.4371 5.74789 13.4622 5.80859C13.4873 5.86928 13.5003 5.93434 13.5003 6.00003C13.5003 6.06573 13.4873 6.13079 13.4622 6.19148C13.4371 6.25218 13.4002 6.30733 13.3538 6.35378Z"
+                fill="white"
+              />
+            </svg>
+            <p className="text-white font-semibold">user 1</p>
+            <svg
+              width="28px"
+              height="28px"
+              viewBox="-2.4 -2.4 28.80 28.80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0">
+                <rect
+                  x="-2.4"
+                  y="-2.4"
+                  width="28.80"
+                  height="28.80"
+                  rx="14.4"
+                  fill="#ffffff"
+                ></rect>
+              </g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                {" "}
+                <path
+                  d="M12.12 12.78C12.05 12.77 11.96 12.77 11.88 12.78C10.12 12.72 8.71997 11.28 8.71997 9.50998C8.71997 7.69998 10.18 6.22998 12 6.22998C13.81 6.22998 15.28 7.69998 15.28 9.50998C15.27 11.28 13.88 12.72 12.12 12.78Z"
+                  stroke="#292D32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>{" "}
+                <path
+                  d="M18.74 19.3801C16.96 21.0101 14.6 22.0001 12 22.0001C9.40001 22.0001 7.04001 21.0101 5.26001 19.3801C5.36001 18.4401 5.96001 17.5201 7.03001 16.8001C9.77001 14.9801 14.25 14.9801 16.97 16.8001C18.04 17.5201 18.64 18.4401 18.74 19.3801Z"
+                  stroke="#292D32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>{" "}
+                <path
+                  d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                  stroke="#292D32"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>{" "}
+              </g>
+            </svg>
           </div>
+        </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
+          <p className="text-amber-50 font-bold text-3xl">
+            Cari Funitur Impian
+          </p>
+          <p className="text-white text-lg font-semibold">
+            Cari furnitur mulai dari meja, lemari, hingga rak disini
+          </p>
+          <form action="" onSubmit={handleSubmit} className="w-full">
+            <div className="relative w-full max-w-2xl mx-auto mt-4 flex items-center">
+              <input
+                type="text"
+                value={searchBar}
+                onChange={(e) => setSearchBar(e.target.value)}
+                placeholder="Cari furnitur"
+                className="flex-1 border border-white rounded-full px-4 py-3 
+               focus:outline-none focus:ring-2 focus:ring-orange-400 
+               bg-amber-50 text-gray-700"
+              />
+              <div className="flex ml-2 items-center rounded-full bg-[#FF7900] ">
+                <button className="w-full h-full">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21.53 20.47L16.84 15.78C18.2 14.14 18.88 12.05 18.73 9.93C18.59 7.81 17.63 5.82 16.06 4.39C14.49 2.96 12.43 2.18 10.3 2.23C8.18 2.28 6.15 3.15 4.65 4.65C3.15 6.15 2.28 8.18 2.23 10.3C2.18 12.43 2.96 14.49 4.39 16.06C5.82 17.63 7.81 18.59 9.93 18.73C12.05 18.88 14.14 18.2 15.78 16.84L20.47 21.53C20.54 21.6 20.62 21.66 20.71 21.7C20.8 21.73 20.9 21.75 21 21.75C21.1 21.75 21.2 21.73 21.29 21.69C21.38 21.66 21.46 21.6 21.53 21.53C21.6 21.46 21.66 21.38 21.69 21.29C21.73 21.2 21.75 21.1 21.75 21C21.75 20.9 21.73 20.8 21.69 20.71C21.66 20.62 21.6 20.54 21.53 20.47Z"
+                      fill="white"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       ;

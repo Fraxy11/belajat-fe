@@ -11,6 +11,14 @@ export default function Login() {
   }, []);
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Username:", username);
+    console.log("Password:", password);
+  };
   const handleSignIn = () => {
     navigation("/home");
   };
@@ -52,105 +60,111 @@ export default function Login() {
             </p>
           </div>
         </div>
-        <div className="space-y-2">
-          <div className="flex flex-col items-start space-y-3 ">
-            <label className="font-semibold text-[14px]">Username</label>
-            <input
-              type="text"
-              placeholder="Enter your username"
-              className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
-            />
-          </div>
-          <div className="flex flex-col items-start space-y-3 relative">
-            <label className="font-semibold text-[14px]">Password</label>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
-              className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
-            />
-            <div
-              className="absolute top-[50%] right-[10px] transform -translate-y-[50%] bottom-[50%]"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <svg
-                  version="1.1"
-                  id="Layer_1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20px"
-                  height="20px"
-                  viewBox="0 0 1.6 1.6"
-                  enable-background="new 0 0 64 64"
-                >
-                  <path
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="0.05"
-                    stroke-miterlimit="10"
-                    d="M0.025 0.8s0.275 0.375 0.775 0.375 0.775 -0.375 0.775 -0.375 -0.275 -0.375 -0.775 -0.375S0.025 0.8 0.025 0.8z"
-                  />
-                  <path
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="0.05"
-                    stroke-miterlimit="10"
-                    cx="32"
-                    cy="32"
-                    r="7"
-                    d="M0.975 0.8A0.175 0.175 0 0 1 0.8 0.975A0.175 0.175 0 0 1 0.625 0.8A0.175 0.175 0 0 1 0.975 0.8z"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  version="1.1"
-                  id="Layer_1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20px"
-                  height="20px"
-                  viewBox="0 0 1.6 1.6"
-                  enable-background="new 0 0 64 64"
-                >
-                  <path
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="0.05"
-                    stroke-miterlimit="10"
-                    d="M0.025 0.8s0.275 0.375 0.775 0.375 0.775 -0.375 0.775 -0.375 -0.275 -0.375 -0.775 -0.375S0.025 0.8 0.025 0.8z"
-                  />
-                  <path
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="0.05"
-                    stroke-miterlimit="10"
-                    cx="32"
-                    cy="32"
-                    r="7"
-                    d="M0.975 0.8A0.175 0.175 0 0 1 0.8 0.975A0.175 0.175 0 0 1 0.625 0.8A0.175 0.175 0 0 1 0.975 0.8z"
-                  />
-                  <path
-                    fill="none"
-                    stroke="#000000"
-                    stroke-width="0.05"
-                    stroke-miterlimit="10"
-                    x1="9"
-                    y1="55"
-                    x2="55"
-                    y2="9"
-                    d="M0.225 1.375L1.375 0.225"
-                  />
-                </svg>
-              )}
+        <form onSubmit={handleSubmit}>
+          <div className="space-y-2">
+            <div className="flex flex-col items-start space-y-3 ">
+              <label className="font-semibold text-[14px]">Username</label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
+                className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              />
+            </div>
+            <div className="flex flex-col items-start space-y-3 relative">
+              <label className="font-semibold text-[14px]">Password</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full border  border-gray-300  rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              />
+              <div
+                className="absolute top-[50%] right-[10px] transform -translate-y-[50%] bottom-[50%]"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <svg
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 1.6 1.6"
+                    enable-background="new 0 0 64 64"
+                  >
+                    <path
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="0.05"
+                      stroke-miterlimit="10"
+                      d="M0.025 0.8s0.275 0.375 0.775 0.375 0.775 -0.375 0.775 -0.375 -0.275 -0.375 -0.775 -0.375S0.025 0.8 0.025 0.8z"
+                    />
+                    <path
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="0.05"
+                      stroke-miterlimit="10"
+                      cx="32"
+                      cy="32"
+                      r="7"
+                      d="M0.975 0.8A0.175 0.175 0 0 1 0.8 0.975A0.175 0.175 0 0 1 0.625 0.8A0.175 0.175 0 0 1 0.975 0.8z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 1.6 1.6"
+                    enable-background="new 0 0 64 64"
+                  >
+                    <path
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="0.05"
+                      stroke-miterlimit="10"
+                      d="M0.025 0.8s0.275 0.375 0.775 0.375 0.775 -0.375 0.775 -0.375 -0.275 -0.375 -0.775 -0.375S0.025 0.8 0.025 0.8z"
+                    />
+                    <path
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="0.05"
+                      stroke-miterlimit="10"
+                      cx="32"
+                      cy="32"
+                      r="7"
+                      d="M0.975 0.8A0.175 0.175 0 0 1 0.8 0.975A0.175 0.175 0 0 1 0.625 0.8A0.175 0.175 0 0 1 0.975 0.8z"
+                    />
+                    <path
+                      fill="none"
+                      stroke="#000000"
+                      stroke-width="0.05"
+                      stroke-miterlimit="10"
+                      x1="9"
+                      y1="55"
+                      x2="55"
+                      y2="9"
+                      d="M0.225 1.375L1.375 0.225"
+                    />
+                  </svg>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        <button
-          onClick={handleSignIn}
-          className="w-[350px] h-[40px] rounded-full flex items-center justify-center bg-[#FF7900]"
-        >
-          <div className="bg-[#FF7900] w-[350px] ">
-            <span className="text-white text-sm font-semibold">Sign In</span>
-          </div>
-        </button>
+          <button
+            onClick={handleSignIn}
+            className="w-[350px] h-[40px] rounded-full flex items-center justify-center bg-[#FF7900]"
+          >
+            <div className="bg-[#FF7900] w-[350px] ">
+              <span className="text-white text-sm font-semibold">Sign In</span>
+            </div>
+          </button>
+        </form>
       </div>
     </div>
   );
